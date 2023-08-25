@@ -5,23 +5,25 @@ import { HiOutlineSearch } from "react-icons/hi";
 interface Props {
   inputValue: string;
   setInputValue: (value: string) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const SearchCard = ({ inputValue, setInputValue }: Props) => {
+const SearchCard = ({ inputValue, setInputValue, handleSubmit }: Props) => {
   return (
     <C.SearchArea>
-      <div>
-        <HiOutlineSearch />
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <HiOutlineSearch size="1.7em" />
         <input
           type="text"
           placeholder="Search GitHub username.."
           value={inputValue}
+          required
           onChange={(e) => {
             setInputValue(e.target.value);
           }}
         />
-      </div>
-      <button>Search</button>
+        <button type="submit">Search</button>
+      </form>
     </C.SearchArea>
   );
 };

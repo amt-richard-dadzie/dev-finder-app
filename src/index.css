@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: clamp(1.5rem,calc(0.03rem + 6.26vw),3.75rem);
+    background-color: #f4f9ff;
+}

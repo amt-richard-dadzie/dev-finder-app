@@ -4,10 +4,15 @@ import Header from "./components/Header/Header";
 import SearchCard from "./components/SearchCard/SearchCard";
 import { UserData } from "./userData";
 import ProfileDetails from "./components/ProfileDetails/ProfileDetails";
+import { useTheme } from "./ThemeContext";
+// import { themeSwitch } from "./sharedStyles";
 
 const App = () => {
+  const { state } = useTheme();
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState<UserData | null>(null);
+
+  // console.log(inputValue);
 
   const fetchApiData = async (userName: string) => {
     try {
@@ -22,15 +27,26 @@ const App = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetchApiData("octocat");
-  // }, []);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    fetchApiData(inputValue);
+  };
+
+  useEffect(() => {
+    fetchApiData("octocat");
+  }, []);
+
+  console.log(data);
 
   return (
     <>
       <Header />
-      <SearchCard inputValue={inputValue} setInputValue={setInputValue} />
-      {data && (
+      <SearchCard
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        handleSubmit={handleSubmit}
+      />
+      {data ? (
         <ProfileDetails
           name={data.name}
           login={data.login}
@@ -45,6 +61,8 @@ const App = () => {
           blog={data.blog}
           company={data.company}
         />
+      ) : (
+        "Nothing searched"
       )}
     </>
   );

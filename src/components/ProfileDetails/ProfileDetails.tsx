@@ -26,7 +26,7 @@ const ProfileDetails = ({
         </div>
         <p>{created_at}</p>
       </section>
-      <p className="bio">{bio && bio}</p>
+      <p className="bio">{bio ? bio : "This profile has no bio"}</p>
       <section className="dev-account-info">
         <p>
           <span>Repos</span>
