@@ -20,8 +20,8 @@ const SearchCard = ({ inputValue, setInputValue }: Props) => {
             setInputValue(e.target.value);
           }}
         />
-        <button>Search</button>
       </div>
+      <button>Search</button>
     </C.SearchArea>
   );
 };
