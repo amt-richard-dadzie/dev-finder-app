@@ -1,7 +1,7 @@
 import styles from "styled-components";
 
 export const SearchArea = styles.section`
-    margin: 0 auto;
+    margin: 20px auto 50px auto;
     max-width:  clamp(21.88rem, 6.39rem + 66.09vw, 45.63rem);
 
     form {
