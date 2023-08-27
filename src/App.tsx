@@ -5,25 +5,37 @@ import SearchCard from "./components/SearchCard/SearchCard";
 import { UserData } from "./userData";
 import ProfileDetails from "./components/ProfileDetails/ProfileDetails";
 import { useTheme } from "./ThemeContext";
+import Page404 from "./components/Error/Error";
 // import { themeSwitch } from "./sharedStyles";
 
 const App = () => {
   const { state } = useTheme();
   const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState<String | null>(null);
   const [data, setData] = useState<UserData | null>(null);
 
-  // console.log(inputValue);
-
   const fetchApiData = async (userName: string) => {
+    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
+
     try {
       const response = await fetch(`https://api.github.com/users/${userName}`);
-      if (!response.ok) {
-        throw new Error("Request failed with status" + response.status);
+      if (response.status === 200) {
+        const data: UserData = await response.json();
+        setData(data);
+        setError(null);
+      } else if (response.status === 404) {
+        if (!validUsernameRegex.test(userName)) {
+          setError("Invalid username");
+          return;
+        } else {
+          setError("User Not found");
+        }
       }
-      const data: UserData = await response.json();
-      setData(data);
     } catch (error) {
-      console.log(error);
+      setError("An error ocurred while fetching data");
+      if (error instanceof Error) {
+        console.error("An error occurred:", error.message);
+      }
     }
   };
 
@@ -36,7 +48,15 @@ const App = () => {
     fetchApiData("octocat");
   }, []);
 
-  console.log(data);
+  const formatDateString = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", options);
+  };
 
   return (
     <>
@@ -46,11 +66,12 @@ const App = () => {
         setInputValue={setInputValue}
         handleSubmit={handleSubmit}
       />
-      {data ? (
+      {error && <p className="error">{error}</p>}
+      {data && (
         <ProfileDetails
           name={data.name}
           login={data.login}
-          created_at={data.created_at}
+          created_at={formatDateString(data.created_at)}
           avatar_url={data.avatar_url}
           bio={data.bio}
           public_repos={data.public_repos}
@@ -61,8 +82,6 @@ const App = () => {
           blog={data.blog}
           company={data.company}
         />
-      ) : (
-        "Nothing searched"
       )}
     </>
   );

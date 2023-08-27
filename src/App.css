@@ -1,0 +1,9 @@
+.error {
+    max-width: clamp(21.88rem, 6.39rem + 66.09vw, 45.63rem);
+    margin: 0 auto;
+    color: red;
+    text-align: right;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 0;
+}
