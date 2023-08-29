@@ -51,7 +51,7 @@ const App = () => {
   }, [state.theme]);
 
   useEffect(() => {
-    fetchApiData("octocat");
+    fetchApiData("richarddadzie");
   }, []);
 
   const formatDateString = (dateString: string): string => {
