@@ -68,6 +68,9 @@ export const ProfileDetail = styled.section`
     grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 7px;
 
+    .opacity-reduced {
+      opacity: 0.5;
+    }
     div {
       display: flex;
       gap: 0 4px;

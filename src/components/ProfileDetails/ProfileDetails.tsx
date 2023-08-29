@@ -56,15 +56,15 @@ const ProfileDetails = ({
           <IoLocation />
           <p>{location}</p>
         </div>
-        <div>
-          <HiLink />
-          <p>{blog ? blog : "Not Available"}</p>
-        </div>
-        <div>
+        <div className={twitter_username ? "" : "opacity-reduced"}>
           <BsTwitter />
           <p>{twitter_username ? twitter_username : "Not Available"}</p>
         </div>
-        <div>
+        <div className={blog ? "" : "opacity-reduced"}>
+          <HiLink />
+          <p>{blog ? blog : "Not Available"}</p>
+        </div>
+        <div className={company ? "" : "opacity-reduced"}>
           <HiBuildingOffice2 />
           <p>{!company ? "Not Available" : company}</p>
         </div>

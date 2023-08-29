@@ -19,12 +19,12 @@ const Header = () => {
   return (
     <C.Header>
       <h1>devFinder</h1>
-      <div className="themeSwitch">
+      <div className="themeSwitch" onClick={handleThemeChange}>
         <p>{state.theme === "light" ? "LIGHT" : "DARK"}</p>
         {state.theme === "light" ? (
           <MdOutlineLightMode onClick={handleThemeChange} />
         ) : (
-          <FaMoon onClick={handleThemeChange} />
+          <FaMoon />
         )}
       </div>
     </C.Header>
