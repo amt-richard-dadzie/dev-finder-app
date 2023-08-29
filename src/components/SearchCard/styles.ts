@@ -24,19 +24,6 @@ export const SearchArea = styles.section`
         input:focus {
             outline: none;
           }
-    
-
-        // .input {
-        //     display: flex;
-        //     align-items: center;
-        //     width: 100
-
-        //     input{
-        //         background-color: transparent;
-        //         border: none;
-        //     }
-            
-        // }
 
         button {
             padding: 15px 25px;

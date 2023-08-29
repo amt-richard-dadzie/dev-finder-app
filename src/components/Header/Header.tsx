@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <C.Header style={sharedStyles(state)}>
+    <C.Header>
       <h1>devFinder</h1>
       <div className="themeSwitch">
         <p>{state.theme === "light" ? "LIGHT" : "DARK"}</p>

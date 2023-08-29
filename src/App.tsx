@@ -5,8 +5,7 @@ import SearchCard from "./components/SearchCard/SearchCard";
 import { UserData } from "./userData";
 import ProfileDetails from "./components/ProfileDetails/ProfileDetails";
 import { useTheme } from "./ThemeContext";
-import Page404 from "./components/Error/Error";
-// import { themeSwitch } from "./sharedStyles";
+import { themeSwitch } from "./sharedStyles";
 
 const App = () => {
   const { state } = useTheme();
@@ -43,6 +42,13 @@ const App = () => {
     e.preventDefault();
     fetchApiData(inputValue);
   };
+
+  useEffect(() => {
+    document.body.classList.remove("light-theme", "dark-theme");
+    document.body.classList.add(
+      state.theme === "light" ? "light-theme" : "dark-theme"
+    );
+  }, [state.theme]);
 
   useEffect(() => {
     fetchApiData("octocat");

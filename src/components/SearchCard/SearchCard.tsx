@@ -1,6 +1,8 @@
 import React from "react";
 import * as C from "./styles";
 import { HiOutlineSearch } from "react-icons/hi";
+import { sharedStyles } from "../../sharedStyles";
+import { useTheme } from "../../ThemeContext";
 
 interface Props {
   inputValue: string;
@@ -9,11 +11,14 @@ interface Props {
 }
 
 const SearchCard = ({ inputValue, setInputValue, handleSubmit }: Props) => {
+  const { state } = useTheme();
+
   return (
     <C.SearchArea>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <HiOutlineSearch size="1.7em" />
+      <form onSubmit={(e) => handleSubmit(e)} style={sharedStyles(state)}>
+        <HiOutlineSearch size="2.0em" color="blue" />
         <input
+          style={sharedStyles(state)}
           type="text"
           placeholder="Search GitHub username.."
           value={inputValue}

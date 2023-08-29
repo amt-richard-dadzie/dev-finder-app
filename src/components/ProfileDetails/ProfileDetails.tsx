@@ -5,6 +5,8 @@ import { BsTwitter } from "react-icons/bs";
 import { IoLocation } from "react-icons/io5";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { HiLink } from "react-icons/hi";
+import { useTheme } from "../../ThemeContext";
+import { sharedStyles, themeSwitch } from "../../sharedStyles";
 
 const ProfileDetails = ({
   login,
@@ -20,18 +22,22 @@ const ProfileDetails = ({
   blog,
   company,
 }: ProfileProps) => {
+  const { state } = useTheme();
+
   return (
-    <C.ProfileDetail>
+    <C.ProfileDetail style={sharedStyles(state)}>
       <img src={avatar_url} alt="profile-img" width="120px" height="120px" />
       <section className="dev-basic-info">
         <div>
           <p>{name}</p>
-          <a href="">{login}</a>
+          <a href="" className="link">
+            {login}
+          </a>
         </div>
         <p>Joined {created_at}</p>
       </section>
       <p className="bio">{bio ? bio : "This profile has no bio"}</p>
-      <section className="dev-account-info">
+      <section className="dev-account-info" style={themeSwitch(state)}>
         <p>
           <span>Repos</span>
           {public_repos}
@@ -56,11 +62,7 @@ const ProfileDetails = ({
         </div>
         <div>
           <BsTwitter />
-          <p>
-            <a href="">
-              {twitter_username ? twitter_username : "Not Available"}
-            </a>
-          </p>
+          <p>{twitter_username ? twitter_username : "Not Available"}</p>
         </div>
         <div>
           <HiBuildingOffice2 />

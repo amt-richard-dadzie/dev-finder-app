@@ -31,9 +31,10 @@ export const ProfileDetail = styled.section`
         font-size: 25px;
         font-weight: 900;
       }
-      a {
+      .link {
         color: blue;
         text-decoration: none;
+        font-size: 18px;
       }
     }
   }
@@ -79,6 +80,49 @@ export const ProfileDetail = styled.section`
     a {
       display: block;
       text-decoration: none;
+    }
+  }
+  @media (max-width: 430px) {
+    grid-column-gap: 7px;
+    grid-template-areas:
+      "avatar  person"
+      "bio bio"
+      "stat stat"
+      "link link";
+
+    img {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    .dev-basic-info {
+      justify-content: flex-start;
+      flex-direction: column;
+
+      div {
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .dev-account-info {
+      padding: 1rem;
+      text-align: center;
+
+      p {
+        font-size: 20px;
+      }
+    }
+
+    .dev-links {
+      grid-template-columns: 1fr;
+
+      div {
+        p {
+          font-size: 15px;
+        }
+      }
     }
   }
 `;
